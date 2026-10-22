@@ -1,0 +1,208 @@
+{
+  "checks": [
+    {
+      "evidence": {
+        "expected": "PASS",
+        "observed": "PASS"
+      },
+      "id": "complete",
+      "passed": true
+    },
+    {
+      "evidence": "Input records equal their pre-evaluation snapshot.",
+      "id": "complete-input-preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "expected": "INCONCLUSIVE",
+        "observed": "INCONCLUSIVE"
+      },
+      "id": "missing-visual",
+      "passed": true
+    },
+    {
+      "evidence": "Input records equal their pre-evaluation snapshot.",
+      "id": "missing-visual-input-preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "expected": "REFUSED",
+        "observed": "REFUSED"
+      },
+      "id": "stale-candidate",
+      "passed": true
+    },
+    {
+      "evidence": "Input records equal their pre-evaluation snapshot.",
+      "id": "stale-candidate-input-preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "expected": "REFUSED",
+        "observed": "REFUSED"
+      },
+      "id": "integrity-mismatch",
+      "passed": true
+    },
+    {
+      "evidence": "Input records equal their pre-evaluation snapshot.",
+      "id": "integrity-mismatch-input-preserved",
+      "passed": true
+    },
+    {
+      "evidence": {
+        "expected": "FAIL",
+        "observed": "FAIL"
+      },
+      "id": "seeded-defect",
+      "passed": true
+    },
+    {
+      "evidence": "Input records equal their pre-evaluation snapshot.",
+      "id": "seeded-defect-input-preserved",
+      "passed": true
+    }
+  ],
+  "demo": "covenant-factory-evidence-reference",
+  "identity": {
+    "build": "synthetic-build-01",
+    "candidate": "synthetic-candidate-01",
+    "producer": "in-process-fixture"
+  },
+  "manifest": [
+    {
+      "assertion": "heading-visible",
+      "case": "summary-card",
+      "role": "reader",
+      "viewport": "compact"
+    },
+    {
+      "assertion": "heading-visible",
+      "case": "summary-card",
+      "role": "reader",
+      "viewport": "wide"
+    },
+    {
+      "assertion": "action-visible",
+      "case": "detail-card",
+      "role": "reader",
+      "viewport": "compact"
+    },
+    {
+      "assertion": "action-visible",
+      "case": "detail-card",
+      "role": "reader",
+      "viewport": "wide"
+    }
+  ],
+  "provider_calls": 0,
+  "release_authorized": false,
+  "scenarios": [
+    {
+      "event": "Four matched synthetic observations supplied.",
+      "id": "complete",
+      "result": {
+        "reasons": [
+          "All four required tuples match and are satisfied."
+        ],
+        "release_authorized": false,
+        "required_records": 4,
+        "unmet_checks": [],
+        "validated_records": 4,
+        "verdict": "PASS"
+      }
+    },
+    {
+      "event": "One visual observation deliberately omitted.",
+      "id": "missing-visual",
+      "result": {
+        "reasons": [
+          "Required evidence is missing or unknown."
+        ],
+        "release_authorized": false,
+        "required_records": 4,
+        "unmet_checks": [
+          {
+            "assertion": "action-visible",
+            "case": "detail-card",
+            "reason": "missing",
+            "role": "reader",
+            "viewport": "wide"
+          }
+        ],
+        "validated_records": 3,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "event": "A record labels a different synthetic candidate.",
+      "id": "stale-candidate",
+      "result": {
+        "reasons": [
+          "Record 1: candidate, build or producer does not match."
+        ],
+        "release_authorized": false,
+        "required_records": 4,
+        "unmet_checks": [
+          {
+            "assertion": "heading-visible",
+            "case": "summary-card",
+            "reason": "missing",
+            "role": "reader",
+            "viewport": "compact"
+          }
+        ],
+        "validated_records": 3,
+        "verdict": "REFUSED"
+      }
+    },
+    {
+      "event": "A payload changed without updating its digest.",
+      "id": "integrity-mismatch",
+      "result": {
+        "reasons": [
+          "Record 1: payload integrity check did not match."
+        ],
+        "release_authorized": false,
+        "required_records": 4,
+        "unmet_checks": [
+          {
+            "assertion": "heading-visible",
+            "case": "summary-card",
+            "reason": "missing",
+            "role": "reader",
+            "viewport": "compact"
+          }
+        ],
+        "validated_records": 3,
+        "verdict": "REFUSED"
+      }
+    },
+    {
+      "event": "A valid observation records an absent action.",
+      "id": "seeded-defect",
+      "result": {
+        "reasons": [
+          "A required assertion was observed violated."
+        ],
+        "release_authorized": false,
+        "required_records": 4,
+        "unmet_checks": [
+          {
+            "assertion": "action-visible",
+            "case": "detail-card",
+            "reason": "violated",
+            "role": "reader",
+            "viewport": "compact"
+          }
+        ],
+        "validated_records": 4,
+        "verdict": "FAIL"
+      }
+    }
+  ],
+  "synthetic": true
+}
