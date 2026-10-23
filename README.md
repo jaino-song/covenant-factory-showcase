@@ -1,19 +1,25 @@
-# Covenant Labs Factory — Evidence-driven agent workflows
+# Covenant Labs Factory
 
-An agent can finish a task and still leave a reviewer unable to answer three questions: **what changed, what was checked, and does that evidence belong to this candidate?** Covenant Labs Factory explores how to make those answers inspectable across design, implementation, review, and QA.
+**Multi-agent software development with a checkable definition of done.**
 
-Factory V2 is an active engineering project built as a cross-harness methodology and runtime. Its workflow connects an approved mission and acceptance criteria to scoped worker contracts, independent reviews, candidate-bound verification, and human decisions. The interesting engineering problem is the handoff: keeping intent, implementation, evidence, and authority connected as work moves between roles.
+I’m building Factory to coordinate AI agents across **planning, implementation, independent review, and QA**.
 
-This repository presents that architecture and a **newly authored public reference implementation using synthetic inputs**. The runnable slice demonstrates evidence reconciliation. It is separate from the private project’s source and does not claim implementation parity.
+The problem: an agent can report success while required checks are missing, failures remain unresolved, or the evidence comes from a different code revision. Coordinating the agents also means defining what work is required and how someone else can verify it.
 
-## The engineering approach
+My V2 design connects task requirements, scoped implementation, separate design and code reviews, and QA evidence tied to the code being assessed. The public example makes one part executable: checking whether submitted evidence covers the required assertions and belongs to the right candidate and build.
 
-- **Define success before dispatch.** Acceptance criteria inform design, tests, and a worker’s bounded implementation contract.
-- **Review at distinct stages.** Independent PLAN and CODE reviews serve different purposes; implementation success does not replace either review.
-- **Bind checks to a candidate.** Candidate/build identity, evidence producer, payload integrity, and required coverage matter alongside observations.
-- **Keep authority explicit.** Main authorizes applicable QA; humans retain mission approval and release decisions. A QA verdict is evidence for a decision.
+**In development · Private implementation · Public architecture and synthetic reference demo.**
 
-For browser QA, required coverage can be enumerated as **case × assertion × viewport × role**. A successful run message cannot establish that every required combination was observed. The reference makes this distinction executable.
+## What I’m building
+
+- **Clear work packages:** requirements, acceptance criteria, tests, and implementation scope travel together when work moves between agents.
+- **Separate design and code reviews:** a design review checks the proposed approach; a code review examines the resulting change and its verification.
+- **Evidence tied to the work:** checks identify the candidate, build, producer, and required observations so a result from another revision cannot stand in for current evidence.
+- **Explicit decision ownership:** Main authorizes applicable QA; humans retain mission approval and release decisions. A passing QA result does not grant release authority.
+
+For browser QA, required coverage can be listed as **case × assertion × viewport × role**. The reference demo checks that coverage directly, showing why a success message alone is not enough.
+
+The demo is separately authored, uses synthetic inputs, and covers only this evidence-checking slice. It does not execute the private multi-agent workflow or claim implementation parity.
 
 ## Run it in 60 seconds
 
