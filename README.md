@@ -1,12 +1,12 @@
 # Covenant Labs Factory
 
-**Multi-agent software development with a checkable definition of done.**
+**Multi-agent orchestration with reviewable work and verifiable completion.**
 
-I’m building Factory to coordinate AI agents across **planning, implementation, independent review, and QA**.
+I’m building Factory to turn a software request into scoped agent work, independent reviews, and QA evidence tied to the code being assessed.
 
-The problem: an agent can report success while required checks are missing, failures remain unresolved, or the evidence comes from a different code revision. Coordinating the agents also means defining what work is required and how someone else can verify it.
+The problem is knowing when the work is actually done. An agent can report success while required checks are missing, failures remain unresolved, or the evidence belongs to an older revision. Factory’s design makes requirements, responsibilities, and verification explicit at each handoff.
 
-My V2 design connects task requirements, scoped implementation, separate design and code reviews, and QA evidence tied to the code being assessed. The public example makes one part executable: checking whether submitted evidence covers the required assertions and belongs to the right candidate and build.
+The public demo makes one part of that design executable: **accept complete evidence, expose missing checks, and refuse evidence from the wrong candidate or build**.
 
 **In development · Private implementation · Public architecture and synthetic reference demo.**
 
@@ -21,7 +21,7 @@ For browser QA, required coverage can be listed as **case × assertion × viewpo
 
 The demo is separately authored, uses synthetic inputs, and covers only this evidence-checking slice. It does not execute the private multi-agent workflow or claim implementation parity.
 
-## Run it in 60 seconds
+## Run the evidence-checking demo
 
 From this directory, with Python 3.10 or later:
 
@@ -45,9 +45,18 @@ The final `Checks: 10/10 PASS` means the five expected verdicts and five input-p
 
 [The generated JSON artifact](artifacts/demo-output.json) is the deterministic result of actually running this public demo. No browser, model, agent, network, or provider integration executes here.
 
-## Project context
+## Current project status
 
-Architecture snapshot: **2026-10-22**. The current inspected V2 QA candidate has previously recorded local implementation and regression verification. This repository does not rerun those private checks. Actual Browserbase integration remains **NOT_RUN**, and cutover remains **BLOCKED** in that recorded status. This is an architecture and reference snapshot, not a claim of a deployed standalone Factory application or a merged release.
+Documentation refreshed **2026-10-27**, using the latest inspected QA record dated **2026-10-24**.
+
+| Area | Verified scope |
+|---|---|
+| Public reference | Runnable synthetic evaluator, unit tests, and deterministic output in this repository |
+| Private project record | Prior local implementation and regression checks are recorded; they were not rerun for this showcase |
+| Cloud-browser smoke | An operator captured and reviewed four public landing/sign-in views across desktop, tablet, and mobile sizes |
+| Product QA | Inconclusive: authenticated workflows, persistence, and formal agent-driven QA remain unverified |
+
+The browser smoke establishes only those public-screen observations. The private main branch has advanced beyond the recorded QA candidate, so these results do not verify its latest state. Production merge, deployment, and cutover are not established by this evidence. See [evidence and limits](docs/evidence-and-limits.md) for the full boundary.
 
 ## Explore the design
 
